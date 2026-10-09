@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)file:///C:/Users/bibia/Downloads/lemon_studi_corregido.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lemon Studi 📚</title>
+
+
+
+<style>
+
+:root {
+
+  --morado: #7856d8;
+
+  --fondo: #f6f2ff;
+
+  --texto: #30264a;
+
+  --rosa: #ffb5cb;
+
+  --azul: #b8e1ff;
+
+  --verde: #b9f1d5;
+
+  --naranja: #ffdfad;
+
+}
+
+
+
+* { box-sizing: border-box; }
+
+
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, sans-serif;
+
+  background: var(--fondo);
+
+  color: var(--texto);
+
+}
+
+
+
+header {
+
+  background: linear-gradient(120deg, #a88af5, #ffb5cb);
+
+  text-align: center;
+
+  padding: 25px 15px;
+
+}
+
+
+
+header h1 { margin: 0 0 8px; font-size: 32px; }
+
+header p { margin: 0; }
+
+
+
+main {
+
+  max-width: 850px;
+
+  margin: auto;
+
+  padding: 20px;
+
+}
+
+
+
+h2 { text-align: center; }
+
+
+
+.stats {
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin: 18px 0;
+
+}
+
+
+
+.stat, .card {
+
+  background: white;
+
+  padding: 18px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 4px 12px #30264a12;
+
+}
+
+
+
+.stat { text-align: center; flex: 1; min-width: 120px; }
+
+.stat strong { display: block; font-size: 24px; color: var(--morado); }
+
+
+
+.subjects {
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+
+  gap: 12px;
+
+}
+
+
+
+button {
+
+  font: inherit;
+
+  cursor: pointer;
+
+  border: none;
+
+  border-radius: 13px;
+
+  padding: 13px 16px;
+
+  transition: transform .15s, opacity .15s;
+
+}
+
+
+
+button:hover { transform: translateY(-2px); }
+
+button:focus-visible { outline: 3px solid #30264a; }
+
+button:disabled { cursor: default; opacity: .6; }
+
+
+
+.subject {
+
+  min-height: 100px;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  color: var(--texto);
+
+}
+
+
+
+.pink { background: var(--rosa); }
+
+.blue { background: var(--azul); }
+
+.green { background: var(--verde); }
+
+.orange { background: var(--naranja); }
+
+.purple { background: #d9cbff; }
+
+
+
+.card {
+
+  margin-top: 20px;
+
+  padding: 25px;
+
+  text-align: center;
+
+}
+
+
+
+.question {
+
+  font-size: 23px;
+
+  font-weight: bold;
+
+  margin: 25px 0;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+
+}
+
+
+
+.answer {
+
+  background: #f0eaff;
+
+  border-radius: 12px;
+
+  padding: 16px;
+
+  margin: 15px 0;
+
+  line-height: 1.5;
+
+}
+
+
+
+.actions {
+
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 18px;
+
+}
+
+
+
+.primary { background: var(--morado); color: white; }
+
+.secondary { background: #e9e2ff; color: var(--texto); }
+
+
+
+.option-list {
+
+  display: grid;
+
+  gap: 10px;
+
+  margin: 20px 0;
+
+}
+
+
+
+.option {
+
+  background: #f0eaff;
+
+  text-align: left;
+
+  border: 2px solid transparent;
+
+}
+
+
+
+.option:hover { border-color: var(--morado); }
+
+.option.correct { background: #c9f4dc; }
+
+.option.wrong { background: #ffd5df; }
+
+
+
+.feedback {
+
+  font-weight: bold;
+
+  min-height: 25px;
+
+  line-height: 1.5;
+
+}
+
+
+
+.hidden { display: none !important; }
+
+
+
+footer {
+
+  text-align: center;
+
+  padding: 25px;
+
+  color: #655780;
+
+}
+
+
+
+@media (max-width: 480px) {
+
+  header h1 { font-size: 27px; }
+
+  main { padding: 12px; }
+
+  .question { font-size: 20px; }
+
+  .card { padding: 17px; }
+
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<header>
+
+  <h1>📚 Lemon Studi</h1>
+
+  <p>¡Aprende, practica y alcanza tus metas! ⭐</p>
+
+</header>
+
+
+
+<main>
+
+  <div class="stats">
+
+    <div class="stat">⭐ Puntos<strong id="points">0</strong></div>
+
+    <div class="stat">🃏 Tarjetas vistas<strong id="seen">0</strong></div>
+
+    <div class="stat">🏆 Mejor resultado<strong id="best">0%</strong></div>
+
+  </div>
+
+
+
+  <section id="home">
+
+    <h2>¿Qué quieres estudiar hoy?</h2>
+
+    <div class="subjects" id="subjects"><button class="subject pink">➗ Matemáticas</button><button class="subject blue">🔬 Ciencias</button><button class="subject green">🏛️ Historia</button><button class="subject orange">✍️ Español</button><button class="subject purple">🇬🇧 Inglés</button></div>
+
+    <div class="card">
+
+      <h3>💡 Consejo de estudio</h3>
+
+      <p>Estudia un poco cada día, intenta responder sin mirar y repasa tus errores.</p>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="study" class="hidden">
+
+    <h2 id="studyTitle"></h2>
+
+    <div class="card">
+
+      <p id="cardCount"></p>
+
+      <div class="question" id="flashQuestion"></div>
+
+      <div id="flashAnswer" class="answer hidden"></div>
+
+      <div class="actions">
+
+        <button class="primary" id="revealBtn" onclick="reveal()">💡 Ver respuesta</button>
+
+        <button class="secondary" onclick="nextCard()">Siguiente ➡</button>
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button class="secondary" onclick="goHome()">🏠 Menú</button>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="quiz" class="hidden">
+
+    <h2 id="quizTitle"></h2>
+
+    <div class="card">
+
+      <p id="quizCount"></p>
+
+      <div class="question" id="quizQuestion"></div>
+
+      <div id="options" class="option-list"></div>
+
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+
+      <button id="nextQuiz" class="primary hidden" onclick="nextQuestion()">Siguiente ➡</button>
+
+    </div>
+
+    <div class="actions">
+
+      <button class="secondary" onclick="goHome()">🏠 Menú</button>
+
+    </div>
+
+  </section>
+
+
+
+  <section id="results" class="hidden">
+
+    <div class="card">
+
+      <h2>🏆 ¡Terminaste!</h2>
+
+      <div class="question" id="finalScore"></div>
+
+      <p id="finalMessage"></p>
+
+      <div class="actions">
+
+        <button class="primary" onclick="startQuiz(currentSubject)">🔄 Repetir</button>
+
+        <button class="secondary" onclick="goHome()">🏠 Menú principal</button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+
+<footer>Hecho para aprender 💜 · Lemon Studi</footer>
+
+
+
+<script>
+
+const data = {
+
+  "Matemáticas": {
+
+    cards: [
+
+      ["¿Cuánto es 8 × 7?", "56"],
+
+      ["¿Cuánto es 100 ÷ 4?", "25"],
+
+      ["¿Cuántos lados tiene un hexágono?", "6"],
+
+      ["¿Cuánto es 15 + 28?", "43"],
+
+      ["¿Cuál es la mitad de 90?", "45"]
+
+    ],
+
+    quiz: [
+
+      ["¿Cuánto es 9 × 6?", ["54", "45", "63"], 0],
+
+      ["¿Cuánto es 50 - 18?", ["28", "32", "38"], 1],
+
+      ["¿Cuántos lados tiene un triángulo?", ["4", "5", "3"], 2],
+
+      ["¿Cuánto es 12 + 15?", ["27", "25", "29"], 0],
+
+      ["¿Cuál es la mitad de 64?", ["24", "32", "36"], 1]
+
+    ]
+
+  },
+
+  "Ciencias": {
+
+    cards: [
+
+      ["¿Qué planeta habitamos?", "La Tierra"],
+
+      ["¿Qué órgano bombea la sangre?", "El corazón"],
+
+      ["¿Qué necesitan las plantas para hacer fotosíntesis?", "Luz, agua y dióxido de carbono"],
+
+      ["¿En qué estado está el hielo?", "Sólido"],
+
+      ["¿Qué gas necesitamos para respirar?", "Oxígeno"]
+
+    ],
+
+    quiz: [
+
+      ["¿Cuál es el planeta rojo?", ["Venus", "Marte", "Júpiter"], 1],
+
+      ["¿Qué órgano usamos para respirar?", ["Pulmones", "Estómago", "Riñones"], 0],
+
+      ["¿Qué estrella ilumina la Tierra?", ["La Luna", "El Sol", "Marte"], 1],
+
+      ["¿Qué estado tiene el hielo?", ["Líquido", "Gaseoso", "Sólido"], 2],
+
+      ["¿Cuál de estos animales es mamífero?", ["Delfín", "Tortuga", "Gallina"], 0]
+
+    ]
+
+  },
+
+  "Historia": {
+
+    cards: [
+
+      ["¿En qué año comenzó la Independencia de México?", "1810"],
+
+      ["¿En qué año se consumó la Independencia de México?", "1821"],
+
+      ["¿Quién fue Miguel Hidalgo?", "Un iniciador de la Independencia de México"],
+
+      ["¿Qué civilización construyó Chichén Itzá?", "La maya"],
+
+      ["¿En qué continente surgió el antiguo Egipto?", "África"]
+
+    ],
+
+    quiz: [
+
+      ["¿En qué año comenzó la Independencia de México?", ["1810", "1910", "1821"], 0],
+
+      ["¿Quién inició el movimiento de Independencia?", ["Miguel Hidalgo", "Benito Juárez", "Porfirio Díaz"], 0],
+
+      ["¿En qué año se consumó la Independencia?", ["1810", "1821", "1917"], 1],
+
+      ["¿En qué continente se encuentra Egipto?", ["América", "África", "Oceanía"], 1],
+
+      ["¿Qué estudia la historia?", ["El pasado", "Solo los planetas", "Las operaciones"], 0]
+
+    ]
+
+  },
+
+  "Español": {
+
+    cards: [
+
+      ["¿Qué es un sustantivo?", "Una palabra que nombra personas, animales, cosas o ideas"],
+
+      ["¿Qué signos se utilizan para encerrar una pregunta en español?", "¿ y ?"],
+
+      ["¿Qué es un sinónimo?", "Una palabra con significado igual o parecido a otra"],
+
+      ["¿Qué es un verbo?", "Una palabra que expresa acciones, estados o procesos"],
+
+      ["¿Cuál es el plural de lápiz?", "Lápices"]
+
+    ],
+
+    quiz: [
+
+      ["¿Cuál es un sustantivo?", ["Correr", "Mesa", "Rápido"], 1],
+
+      ["¿Cuál es un verbo?", ["Saltar", "Azul", "Casa"], 0],
+
+      ["¿Cuál es un sinónimo de feliz?", ["Triste", "Contento", "Enojado"], 1],
+
+      ["¿Qué signo abre una pregunta en español?", ["¡", "¿", "!"], 1],
+
+      ["¿Cuál es el plural de canción?", ["Cancións", "Canciones", "Cancion"], 1]
+
+    ]
+
+  },
+
+  "Inglés": {
+
+    cards: [
+
+      ["¿Cómo se dice 'hola' en inglés?", "Hello"],
+
+      ["¿Cómo se dice 'perro' en inglés?", "Dog"],
+
+      ["¿Cómo se dice 'libro' en inglés?", "Book"],
+
+      ["¿Qué significa 'apple'?", "Manzana"],
+
+      ["¿Cómo se dice 'buenos días' en inglés?", "Good morning"]
+
+    ],
+
+    quiz: [
+
+      ["¿Qué significa 'cat'?", ["Perro", "Gato", "Pájaro"], 1],
+
+      ["¿Cómo se dice 'rojo' en inglés?", ["Blue", "Green", "Red"], 2],
+
+      ["¿Qué significa 'book'?", ["Libro", "Mesa", "Ventana"], 0],
+
+      ["¿Cómo se dice 'gracias' en inglés?", ["Please", "Sorry", "Thank you"], 2],
+
+      ["¿Qué significa 'water'?", ["Agua", "Fuego", "Tierra"], 0]
+
+    ]
+
+  }
+
+};
+
+
+
+const colors = ["pink", "blue", "green", "orange", "purple"];
+
+let currentSubject = "";
+
+let cards = [];
+
+let cardIndex = 0;
+
+let questions = [];
+
+let questionIndex = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+
+function getNumber(key) {
+
+  try { return Number(localStorage.getItem(key)) || 0; }
+
+  catch { return 0; }
+
+}
+
+
+
+function setNumber(key, value) {
+
+  try { localStorage.setItem(key, String(value)); }
+
+  catch {}
+
+}
+
+
+
+let points = getNumber("lemon_studi_points");
+
+let seen = getNumber("lemon_studi_seen");
+
+let best = getNumber("lemon_studi_best");
+
+
+
+function updateStats() {
+
+  document.getElementById("points").textContent = points;
+
+  document.getElementById("seen").textContent = seen;
+
+  document.getElementById("best").textContent = best + "%";
+
+
+
+  setNumber("lemon_studi_points", points);
+
+  setNumber("lemon_studi_seen", seen);
+
+  setNumber("lemon_studi_best", best);
+
+}
+
+
+
+function show(id) {
+
+  ["home", "study", "quiz", "results"].forEach(section => {
+
+    document.getElementById(section).classList.toggle("hidden", section !== id);
+
+  });
+
+}
+
+
+
+function makeSubjects() {
+
+  const container = document.getElementById("subjects");
+
+
+
+  Object.keys(data).forEach((subject, i) => {
+
+    const button = document.createElement("button");
+
+    button.className = "subject " + colors[i];
+
+    button.textContent = ["➗ ", "🔬 ", "🏛️ ", "✍️ ", "🇬🇧 "][i] + subject;
+
+    button.onclick = () => chooseSubject(subject);
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+
+function chooseSubject(subject) {
+
+  currentSubject = subject;
+
+
+
+  const old = document.getElementById("subjectActions");
+
+  if (old) old.remove();
+
+
+
+  const actions = document.createElement("div");
+
+  actions.id = "subjectActions";
+
+  actions.className = "card";
+
+
+
+  const title = document.createElement("h3");
+
+  title.textContent = "¿Cómo quieres estudiar " + subject + "?";
+
+  actions.appendChild(title);
+
+
+
+  const cardsButton = document.createElement("button");
+
+  cardsButton.className = "primary";
+
+  cardsButton.textContent = "🃏 Tarjetas";
+
+  cardsButton.onclick = startCards;
+
+
+
+  const quizButton = document.createElement("button");
+
+  quizButton.className = "secondary";
+
+  quizButton.textContent = "🎯 Cuestionario";
+
+  quizButton.onclick = () => startQuiz(subject);
+
+
+
+  const row = document.createElement("div");
+
+  row.className = "actions";
+
+  row.append(cardsButton, quizButton);
+
+  actions.appendChild(row);
+
+
+
+  document.getElementById("home").appendChild(actions);
+
+  actions.scrollIntoView({ behavior: "smooth", block: "center" });
+
+}
+
+
+
+function goHome() {
+
+  show("home");
+
+}
+
+
+
+function startCards() {
+
+  cards = [...data[currentSubject].cards];
+
+  cardIndex = 0;
+
+  show("study");
+
+  renderCard();
+
+}
+
+
+
+function renderCard() {
+
+  document.getElementById("studyTitle").textContent = "🃏 " + currentSubject;
+
+  document.getElementById("cardCount").textContent =
+
+    "Tarjeta " + (cardIndex + 1) + " de " + cards.length;
+
+  document.getElementById("flashQuestion").textContent = cards[cardIndex][0];
+
+
+
+  const answer = document.getElementById("flashAnswer");
+
+  answer.textContent = cards[cardIndex][1];
+
+  answer.classList.add("hidden");
+
+
+
+  document.getElementById("revealBtn").disabled = false;
+
+}
+
+
+
+function reveal() {
+
+  document.getElementById("flashAnswer").classList.remove("hidden");
+
+  document.getElementById("revealBtn").disabled = true;
+
+  seen++;
+
+  updateStats();
+
+}
+
+
+
+function nextCard() {
+
+  cardIndex++;
+
+
+
+  if (cardIndex >= cards.length) {
+
+    cardIndex = 0;
+
+  }
+
+
+
+  renderCard();
+
+}
+
+
+
+function startQuiz(subject) {
+
+  currentSubject = subject;
+
+  questions = [...data[subject].quiz];
+
+  questionIndex = 0;
+
+  score = 0;
+
+  show("quiz");
+
+  renderQuestion();
+
+}
+
+
+
+function renderQuestion() {
+
+  answered = false;
+
+  const [question, options] = questions[questionIndex];
+
+
+
+  document.getElementById("quizTitle").textContent = "🎯 Quiz: " + currentSubject;
+
+  document.getElementById("quizCount").textContent =
+
+    "Pregunta " + (questionIndex + 1) + " de " + questions.length;
+
+  document.getElementById("quizQuestion").textContent = question;
+
+  document.getElementById("feedback").textContent = "";
+
+
+
+  const next = document.getElementById("nextQuiz");
+
+  next.classList.add("hidden");
+
+  next.textContent = questionIndex === questions.length - 1
+
+    ? "🏆 Ver resultados" : "Siguiente ➡";
+
+
+
+  const container = document.getElementById("options");
+
+  container.replaceChildren();
+
+
+
+  options.forEach((option, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "option";
+
+    button.textContent = option;
+
+    button.onclick = () => checkAnswer(index, button);
+
+    container.appendChild(button);
+
+  });
+
+}
+
+
+
+function checkAnswer(choice, selectedButton) {
+
+  if (answered) return;
+
+  answered = true;
+
+
+
+  const [, options, correct] = questions[questionIndex];
+
+  const buttons = document.querySelectorAll(".option");
+
+
+
+  buttons.forEach((button, i) => {
+
+    button.disabled = true;
+
+    if (i === correct) button.classList.add("correct");
+
+  });
+
+
+
+  if (choice === correct) {
+
+    score++;
+
+    points += 10;
+
+    document.getElementById("feedback").textContent = "🎉 ¡Correcto! +10 puntos";
+
+  } else {
+
+    selectedButton.classList.add("wrong");
+
+    document.getElementById("feedback").textContent =
+
+      "💡 La respuesta correcta es: " + options[correct];
+
+  }
+
+
+
+  updateStats();
+
+  document.getElementById("nextQuiz").classList.remove("hidden");
+
+}
+
+
+
+function nextQuestion() {
+
+  questionIndex++;
+
+
+
+  if (questionIndex >= questions.length) {
+
+    showResults();
+
+  } else {
+
+    renderQuestion();
+
+  }
+
+}
+
+
+
+function showResults() {
+
+  const percent = Math.round(score / questions.length * 100);
+
+  best = Math.max(best, percent);
+
+  updateStats();
+
+
+
+  document.getElementById("finalScore").textContent =
+
+    score + " de " + questions.length + " correctas";
+
+  document.getElementById("finalMessage").textContent =
+
+    "Resultado: " + percent + "%. " +
+
+    (percent === 100 ? "¡Excelente, todas correctas! 🌟" :
+
+     percent >= 60 ? "¡Muy bien! Sigue practicando. 💪" :
+
+     "¡Sigue practicando, tú puedes! 📚");
+
+
+
+  show("results");
+
+}
+
+
+
+makeSubjects();
+
+updateStats();
+
+</script>
+
+
+
+
+</body></html>
